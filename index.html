@@ -66,6 +66,13 @@
             color: var(--text-main);
             font-weight: 700;
             letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        header .author {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 500;
         }
 
         .main-container {
@@ -236,6 +243,7 @@
         <img src="logo.png" alt="Company Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%233b82f6\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect x=\'2\' y=\'7\' width=\'20\' height=\'14\' rx=\'2\' ry=\'2\'></rect><path d=\'M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\'></path></svg>'">
         <h1>Familia Es Todo</h1>
         <h2>Contract Management System</h2>
+        <div class="author">by Little Mario</div>
     </header>
 
     <div class="main-container">
@@ -449,7 +457,6 @@ Semnătură:`;
             let counter = localStorage.getItem('contract_counter');
             const currentYear = new Date().getFullYear();
 
-            // Dacă nu există deloc counter salvat, pornește de la 1 (fără resetare automată pe an)
             if (!counter) {
                 counter = 1;
             } else {
@@ -474,7 +481,6 @@ Semnătură:`;
                 counter = parseInt(counter, 10) + 1;
             }
 
-            // Salvăm doar contorul persistent în localStorage, fără verificarea anului
             localStorage.setItem('contract_counter', counter);
             
             currentContractNumber = formatContractNumber(currentYear, counter);
