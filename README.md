@@ -1,9 +1,9 @@
 Contract Management System[cite: 1]
 
-Un instrument profesional de generare și management a contractelor individuale de muncă, dezvoltat special pentru mediul RP / servere (compatibil cu platforme de tip FiveM / GTA V), creat pentru a fi utilizat direct din browser, fără bătăi de cap cu baze de date sau instalări de servere complexe.[cite: 1]
+Un instrument profesional de generare și management a contractelor individuale de muncă, dezvoltat special pentru mediul RP / servere (compatibil cu platforme de tip FiveM / GTA V), creat pentru a fi utilizat direct din browser, fără bătăi de cap cu baze de date sau instalări de servere complexe. [cite: 1]
 
 ## 🔗 Link Live / Testare
-Poți testa aplicația direct aici: [https://lttlmario.github.io/contract-firma/](https://lttlmario.github.io/contract-firma/)[cite: 1]
+Poți testa aplicația direct aici: [https://lttlmario.github.io/contract-firma/](https://lttlmario.github.io/contract-firma/) [cite: 1]
 
 ---
 
@@ -24,7 +24,7 @@ Poți testa aplicația direct aici: [https://lttlmario.github.io/contract-firma/
 
 ## 🛠️ Utilizare
 
-1. Accesați [link-ul de testare live](https://lttlmario.github.io/contract-firma/).[cite: 1]
+1. Accesați [link-ul de testare live](https://lttlmario.github.io/contract-firma/). [cite: 1]
 2. Completați toate câmpurile obligatorii din formular (*Manager*, *Nume Angajat*, *CNP*, *Număr Telefon*, *Poziție*, *Data Începerii*).[cite: 1]
 3. Apăsați pe **„Generează Contract”** pentru a actualiza previzualizarea documentului.[cite: 1]
 4. Apăsați pe **„Copiază Contract”** pentru a prelua textul.[cite: 1]
