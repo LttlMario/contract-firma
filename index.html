@@ -244,6 +244,7 @@
             position: relative;
             overflow: hidden;
             transition: border-color 0.2s, background-color 0.2s;
+            padding: 8px;
         }
 
         .paste-zone:hover, .paste-zone.dragover {
@@ -252,15 +253,40 @@
         }
 
         .paste-zone img {
-            max-height: 66.66%;
-            max-width: 66.66%;
+            max-height: 100%;
+            max-width: 100%;
             object-fit: contain;
-            position: absolute;
         }
 
         .paste-zone.has-image {
             border-style: solid;
             border-color: var(--success);
+            padding: 4px;
+        }
+
+        /* Stil pentru butonul X de ștergere imagine */
+        .remove-img-btn {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s;
+        }
+
+        .remove-img-btn:hover {
+            background: var(--danger);
         }
 
         /* Modal pentru mărire imagini în interfață */
@@ -408,15 +434,15 @@
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
                     <div class="form-group" style="margin-bottom: 0;">
-                        <label>Imagine 1 (Apasă și dă Ctrl+V)</label>
+                        <label>Imagine Buletin</label>
                         <div class="paste-zone" id="pasteZone1" tabindex="0" onclick="this.focus()">
-                            <span id="pasteText1">Fă click aici și dă Paste (Ctrl+V)</span>
+                            <span id="pasteText1">Încărca imaginea cu buletinul și dă Paste (Ctrl+V)</span>
                         </div>
                     </div>
                     <div class="form-group" style="margin-bottom: 0;">
-                        <label>Imagine 2 (Apasă și dă Ctrl+V)</label>
+                        <label>Imagine Contract</label>
                         <div class="paste-zone" id="pasteZone2" tabindex="0" onclick="this.focus()">
-                            <span id="pasteText2">Fă click aici și dă Paste (Ctrl+V)</span>
+                            <span id="pasteText2">Încărca imaginea cu contractul și dă Paste (Ctrl+V)</span>
                         </div>
                     </div>
                 </div>
@@ -696,7 +722,10 @@ Semnătură:`;
                             if (id === 1) imageData1 = event.target.result;
                             if (id === 2) imageData2 = event.target.result;
                             
-                            zone.innerHTML = `<img src="${event.target.result}" alt="Imagine ${id}" style="cursor:pointer;" onclick="openModal('${event.target.result}')" title="Click pentru a mări">`;
+                            zone.innerHTML = `
+                                <img src="${event.target.result}" alt="Imagine ${id}" style="cursor:pointer;" onclick="openModal('${event.target.result}')" title="Click pentru a mări">
+                                <button type="button" class="remove-img-btn" onclick="event.stopPropagation(); clearPasteZone(${id});" title="Șterge imaginea">&times;</button>
+                            `;
                             zone.classList.add('has-image');
                         };
                         reader.readAsDataURL(blob);
@@ -716,8 +745,9 @@ Semnătură:`;
         }
 
         function clearPasteZone(id) {
+            const textMsg = id === 1 ? "Încărca imaginea cu buletinul și dă Paste (Ctrl+V)" : "Încărca imaginea cu contractul și dă Paste (Ctrl+V)";
             const zone = document.getElementById(`pasteZone${id}`);
-            zone.innerHTML = `<span id="pasteText${id}">Fă click aici și dă Paste (Ctrl+V)</span>`;
+            zone.innerHTML = `<span id="pasteText${id}">${textMsg}</span>`;
             zone.classList.remove('has-image');
             if (id === 1) imageData1 = null;
             if (id === 2) imageData2 = null;
@@ -760,16 +790,16 @@ Semnătură:`;
 
                 if (imageData1) {
                     filesCount++;
-                    const file1 = dataURItoBlob(imageData1, "imagine_contract_1.png");
-                    formData.append(`files[${filesCount - 1}]`, file1, "imagine_contract_1.png");
-                    attachments.push({ id: filesCount - 1, filename: "imagine_contract_1.png" });
+                    const file1 = dataURItoBlob(imageData1, "buletin.png");
+                    formData.append(`files[${filesCount - 1}]`, file1, "buletin.png");
+                    attachments.push({ id: filesCount - 1, filename: "buletin.png" });
                 }
 
                 if (imageData2) {
                     filesCount++;
-                    const file2 = dataURItoBlob(imageData2, "imagine_contract_2.png");
-                    formData.append(`files[${filesCount - 1}]`, file2, "imagine_contract_2.png");
-                    attachments.push({ id: filesCount - 1, filename: "imagine_contract_2.png" });
+                    const file2 = dataURItoBlob(imageData2, "contract.png");
+                    formData.append(`files[${filesCount - 1}]`, file2, "contract.png");
+                    attachments.push({ id: filesCount - 1, filename: "contract.png" });
                 }
 
                 let embedsList = [];
